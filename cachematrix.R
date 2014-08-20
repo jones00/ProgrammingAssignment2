@@ -4,21 +4,20 @@
 ## Write a short comment describing this function
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- matrix(nrow = nrow(x) , ncol = ncol(x))
-  #inv <- solve(x)
-  list(x, inv)
-
+    global <<- NULL
+    x
 }
 
 
 ## Write a short comment describing this function
-
 cacheSolve <- function(x, ...) {
-  if(length(x) == 2){
-    x[2]
+  if(!is.null(global)){
+    print("valor encontrado no cache:")
+    global
   } else {
-    if(length(x) == 1){
-    solve(x[1])
-    }
+    print("nenhum valor em cache")
+    print("calculando...")
+    global <<- solve(x)
+    global
   }
 }
