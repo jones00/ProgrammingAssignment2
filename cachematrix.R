@@ -1,23 +1,22 @@
-## Put comments here that give an overall description of what your
-## functions do
+## a set of functions to calculate the inverse of a matrix and cache it´s results.
+# It´s usefull when you need to calculate multiple times the inverse of a big matrix, as it avoids running the 
+# same calculations multiple times.
 
-## Write a short comment describing this function
 
+## makeCacheMatrix has parameter x, any object of the class matrix and sets up a free variable to cache the inverse.
+# it returns matrix as the new object.
 makeCacheMatrix <- function(x = matrix()) {
-    global <<- NULL
+    globalCachedMatrix <<- NULL
     x
 }
 
 
-## Write a short comment describing this function
+## cacheSolve calculates the inverse of a matrix x and sets the freevariable.
+# It always returns the inverse of x regardless of it been previously cached or not
 cacheSolve <- function(x, ...) {
-  if(!is.null(global)){
-    print("valor encontrado no cache:")
-    global
-  } else {
-    print("nenhum valor em cache")
-    print("calculando...")
-    global <<- solve(x)
-    global
+  if(is.null(globalCachedMatrix)){
+        globalCachedMatrix <<- solve(x, ...)
   }
+  #there is (now, at least) a cached value, return it
+  globalCachedMatrix
 }
